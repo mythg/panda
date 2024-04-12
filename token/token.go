@@ -35,7 +35,7 @@ const (
 	TRUE     = "TRUE"
 	FALSE    = "FALSE"
 	IF       = "IF"
-	ELSE     = "IF"
+	ELSE     = "ELSE"
 	RETURN   = "RETURN"
 )
 
