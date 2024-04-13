@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	evaluator "panda/evaluator"
 	"panda/lexer"
 	"panda/parser"
 )
@@ -72,8 +73,12 @@ func Start(in io.Reader, out io.Writer) {
 			printParserErrors(out, p.Errors())
 			continue
 		}
-		io.WriteString(out, program.String())
-		io.WriteString(out, "\n")
+
+		evaluator := evaluator.Eval(program)
+		if evaluator != nil {
+			io.WriteString(out, evaluator.Inspect())
+			io.WriteString(out, "\n")
+		}
 
 		//for tok := l.NextToken(); tok.Type != token.EOF; tok = l.NextToken() {
 		//	fmt.Fprintf(out, "%+v\n", tok)
