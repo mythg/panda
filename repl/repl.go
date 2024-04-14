@@ -6,6 +6,7 @@ import (
 	"io"
 	evaluator "panda/evaluator"
 	"panda/lexer"
+	"panda/object"
 	"panda/parser"
 )
 
@@ -56,6 +57,7 @@ const PANDA_FACE = `
 
 func Start(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
+	env := object.NewEnvironment()
 	io.WriteString(out, PANDA_FACE)
 
 	for {
@@ -74,7 +76,7 @@ func Start(in io.Reader, out io.Writer) {
 			continue
 		}
 
-		evaluator := evaluator.Eval(program)
+		evaluator := evaluator.Eval(program, env)
 		if evaluator != nil {
 			io.WriteString(out, evaluator.Inspect())
 			io.WriteString(out, "\n")
