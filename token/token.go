@@ -29,6 +29,9 @@ const (
 	RBRACE    = "}"
 	EQ        = "=="
 	NOT_EQ    = "!="
+	COLON     = ":"
+	LBRACKET  = "["
+	RBRACKET  = "]"
 
 	FUNCTION = "FUNCTION"
 	LET      = "LET"
@@ -38,9 +41,7 @@ const (
 	ELSE     = "ELSE"
 	RETURN   = "RETURN"
 	STRING   = "STRING"
-	LBRACKET = "["
-	RBRACKET = "]"
-	COLON    = ":"
+	MACRO    = "MACRO"
 )
 
 var keywords = map[string]TokenType{
@@ -51,6 +52,7 @@ var keywords = map[string]TokenType{
 	"if":     IF,
 	"else":   ELSE,
 	"return": RETURN,
+	"macro":  MACRO,
 }
 
 func LookupIdent(ident string) TokenType {
